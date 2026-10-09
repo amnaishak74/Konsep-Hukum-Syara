@@ -1,0 +1,1402 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MPI Fikih Kelas XII - Konsep Hukum Syara'</title>
+    <style>
+        /* Modern Design Tokens - Islamic Cream & Emerald Green Palette */
+        :root {
+            --emerald-dark: #0f382c;
+            --emerald-main: #1b4d3e;
+            --emerald-medium: #2d6a4f;
+            --emerald-light: #52b788;
+            --emerald-soft: #d8f3dc;
+            --cream-bg: #faf6f0;
+            --cream-card: #ffffff;
+            --cream-accent: #f3ece0;
+            --cream-dark: #e5d5be;
+            --gold-accent: #d4af37;
+            --gold-light: #f7e7b4;
+            --text-dark: #1d2d27;
+            --text-muted: #52635c;
+            --danger: #e76f51;
+            --success: #2a9d8f;
+            --warning: #e9c46a;
+            --radius-sm: 8px;
+            --radius-md: 14px;
+            --radius-lg: 22px;
+            --shadow-sm: 0 4px 10px rgba(27, 77, 62, 0.06);
+            --shadow-md: 0 8px 25px rgba(27, 77, 62, 0.12);
+            --shadow-lg: 0 15px 35px rgba(27, 77, 62, 0.18);
+            --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', system-ui, -apple-system, Roboto, BlinkMacSystemFont, sans-serif;
+        }
+
+        body {
+            background-color: var(--cream-bg);
+            color: var(--text-dark);
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Top Bar Navigation */
+        header {
+            background: linear-gradient(135deg, var(--emerald-dark) 0%, var(--emerald-main) 100%);
+            color: white;
+            padding: 1rem 1.5rem;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: var(--shadow-md);
+            border-bottom: 3px solid var(--gold-accent);
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-icon {
+            width: 44px;
+            height: 44px;
+            background: var(--gold-accent);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 0 10px rgba(212, 175, 55, 0.4);
+        }
+
+        .logo-text h1 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            color: #ffffff;
+        }
+
+        .logo-text p {
+            font-size: 0.78rem;
+            color: var(--cream-accent);
+            opacity: 0.9;
+        }
+
+        nav {
+            display: flex;
+            gap: 0.5rem;
+            overflow-x: auto;
+            padding-bottom: 4px;
+            max-width: 100%;
+        }
+
+        .nav-btn {
+            background: rgba(255, 255, 255, 0.12);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: white;
+            padding: 0.55rem 1rem;
+            border-radius: var(--radius-sm);
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.88rem;
+            transition: var(--transition);
+            white-space: nowrap;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .nav-btn:hover, .nav-btn.active {
+            background: var(--gold-accent);
+            color: var(--emerald-dark);
+            border-color: var(--gold-accent);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(212, 175, 55, 0.3);
+        }
+
+        /* Main Container & Sections */
+        main {
+            max-width: 1200px;
+            margin: 1.5rem auto;
+            padding: 0 1rem;
+            flex: 1;
+            width: 100%;
+        }
+
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.4s ease-in-out;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Cover Section */
+        .cover-card {
+            background: linear-gradient(145deg, #ffffff 0%, var(--cream-accent) 100%);
+            border: 2px solid var(--cream-dark);
+            border-radius: var(--radius-lg);
+            padding: 2.5rem 2rem;
+            box-shadow: var(--shadow-lg);
+            position: relative;
+            overflow: hidden;
+            margin-bottom: 2rem;
+        }
+
+        .cover-card::before {
+            content: "";
+            position: absolute;
+            top: -50px;
+            right: -50px;
+            width: 200px;
+            height: 200px;
+            background: radial-gradient(circle, rgba(212, 175, 55, 0.2) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        .cover-grid {
+            display: grid;
+            grid-template-columns: 1fr 320px;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        @media (max-width: 868px) {
+            .cover-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .cover-badge {
+            display: inline-block;
+            background: var(--emerald-soft);
+            color: var(--emerald-dark);
+            padding: 0.35rem 0.9rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            border: 1px solid var(--emerald-light);
+        }
+
+        .cover-title {
+            font-size: 2.2rem;
+            color: var(--emerald-dark);
+            line-height: 1.25;
+            margin-bottom: 1rem;
+            font-weight: 800;
+        }
+
+        .cover-subtitle {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            margin-bottom: 1.5rem;
+        }
+
+        .author-box {
+            background: var(--cream-card);
+            border-left: 4px solid var(--gold-accent);
+            padding: 1rem 1.2rem;
+            border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+            box-shadow: var(--shadow-sm);
+            margin-bottom: 1.5rem;
+        }
+
+        .author-name {
+            font-weight: 700;
+            color: var(--emerald-dark);
+            font-size: 1.05rem;
+        }
+
+        .author-inst {
+            font-size: 0.88rem;
+            color: var(--text-muted);
+        }
+
+        .cover-visual {
+            background: linear-gradient(135deg, var(--emerald-dark), var(--emerald-medium));
+            border-radius: var(--radius-md);
+            padding: 2rem 1.5rem;
+            text-align: center;
+            color: white;
+            box-shadow: var(--shadow-md);
+            border: 3px solid var(--gold-accent);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .quran-illustration {
+            width: 140px;
+            height: 140px;
+            margin-bottom: 1rem;
+            filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.3));
+        }
+
+        /* Card Component Styling */
+        .card {
+            background: var(--cream-card);
+            border-radius: var(--radius-md);
+            padding: 1.5rem;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            margin-bottom: 1.5rem;
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 1rem;
+            border-bottom: 2px solid var(--cream-accent);
+            padding-bottom: 0.6rem;
+        }
+
+        .card-header h2 {
+            font-size: 1.3rem;
+            color: var(--emerald-dark);
+        }
+
+        .card-icon {
+            color: var(--gold-accent);
+            font-size: 1.4rem;
+        }
+
+        /* Grid Layouts */
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.25rem;
+        }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 1.25rem;
+        }
+
+        /* Interactive Map / Mindmap Cards */
+        .concept-card {
+            background: #fff;
+            border-top: 4px solid var(--emerald-medium);
+            border-radius: var(--radius-sm);
+            padding: 1.2rem;
+            transition: var(--transition);
+            cursor: pointer;
+            box-shadow: var(--shadow-sm);
+            height: 100%;
+        }
+
+        .concept-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-md);
+            border-top-color: var(--gold-accent);
+        }
+
+        .concept-card h3 {
+            color: var(--emerald-dark);
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .arabic-text {
+            font-family: 'Traditional Arabic', 'Scheherazade New', 'Amiri', serif;
+            font-size: 1.3rem;
+            color: var(--emerald-main);
+            font-weight: bold;
+        }
+
+        .tag {
+            display: inline-block;
+            padding: 0.2rem 0.6rem;
+            font-size: 0.75rem;
+            font-weight: 700;
+            border-radius: 4px;
+            margin-right: 0.4rem;
+            margin-bottom: 0.4rem;
+        }
+
+        .tag-wajib { background: #d8f3dc; color: #081c15; }
+        .tag-sunnah { background: #e0f2fe; color: #0369a1; }
+        .tag-haram { background: #ffe4e6; color: #9f1239; }
+        .tag-makruh { background: #fef3c7; color: #92400e; }
+        .tag-mubah { background: #f3e8ff; color: #6b21a8; }
+
+        /* Simulator Styles */
+        .simulator-box {
+            background: linear-gradient(135deg, #f8f9fa 0%, #edf2f0 100%);
+            border: 2px dashed var(--emerald-light);
+            border-radius: var(--radius-md);
+            padding: 1.5rem;
+        }
+
+        .control-group {
+            margin-bottom: 1.2rem;
+        }
+
+        .control-group label {
+            display: block;
+            font-weight: 700;
+            color: var(--emerald-dark);
+            margin-bottom: 0.4rem;
+            font-size: 0.95rem;
+        }
+
+        select, input[type="text"], input[type="url"], input[type="range"], button.action-btn {
+            width: 100%;
+            padding: 0.7rem 1rem;
+            border-radius: var(--radius-sm);
+            border: 1px solid #ccc;
+            font-size: 0.95rem;
+            outline: none;
+            transition: var(--transition);
+        }
+
+        select:focus, input:focus {
+            border-color: var(--emerald-main);
+            box-shadow: 0 0 0 3px rgba(27, 77, 62, 0.2);
+        }
+
+        .sim-result {
+            background: var(--emerald-dark);
+            color: white;
+            border-radius: var(--radius-md);
+            padding: 1.5rem;
+            margin-top: 1.2rem;
+            border-left: 6px solid var(--gold-accent);
+            box-shadow: var(--shadow-md);
+        }
+
+        .sim-result h4 {
+            color: var(--gold-accent);
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Kinesthetic Drag & Drop / Matcher */
+        .matching-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+
+        @media (max-width: 768px) {
+            .matching-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .draggable-item {
+            background: white;
+            padding: 0.9rem 1.1rem;
+            border-radius: var(--radius-sm);
+            border: 2px solid var(--cream-dark);
+            margin-bottom: 0.75rem;
+            cursor: grab;
+            font-size: 0.92rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: var(--shadow-sm);
+            user-select: none;
+        }
+
+        .draggable-item:active {
+            cursor: grabbing;
+            background: var(--gold-light);
+        }
+
+        .drop-zone {
+            background: var(--cream-accent);
+            border: 2px dashed var(--emerald-medium);
+            border-radius: var(--radius-sm);
+            padding: 1rem;
+            min-height: 110px;
+            margin-bottom: 1rem;
+            transition: var(--transition);
+        }
+
+        .drop-zone.hovered {
+            background: var(--emerald-soft);
+            border-style: solid;
+        }
+
+        .drop-zone h4 {
+            font-size: 0.95rem;
+            color: var(--emerald-dark);
+            margin-bottom: 0.5rem;
+        }
+
+        /* Quiz Formative Styles */
+        .quiz-option {
+            background: white;
+            border: 2px solid var(--cream-dark);
+            border-radius: var(--radius-sm);
+            padding: 0.9rem 1.2rem;
+            margin-bottom: 0.75rem;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 500;
+        }
+
+        .quiz-option:hover {
+            border-color: var(--emerald-light);
+            background: #f4faf6;
+        }
+
+        .quiz-option.selected {
+            border-color: var(--emerald-main);
+            background: var(--emerald-soft);
+            font-weight: 700;
+        }
+
+        .quiz-option.correct {
+            border-color: var(--success);
+            background: #d1e7dd;
+            color: #0f5132;
+        }
+
+        .quiz-option.wrong {
+            border-color: var(--danger);
+            background: #f8d7da;
+            color: #842029;
+        }
+
+        .quiz-feedback {
+            padding: 1rem 1.2rem;
+            border-radius: var(--radius-sm);
+            margin-top: 1rem;
+            display: none;
+            font-size: 0.92rem;
+            line-height: 1.5;
+        }
+
+        .quiz-feedback.show {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .feedback-correct {
+            background: #d1e7dd;
+            border: 1px solid #badbcc;
+            color: #0f5132;
+        }
+
+        .feedback-wrong {
+            background: #f8d7da;
+            border: 1px solid #f5c2c7;
+            color: #842029;
+        }
+
+        /* Buttons & Controls */
+        .btn {
+            background: var(--emerald-main);
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: var(--radius-sm);
+            font-weight: 700;
+            cursor: pointer;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            text-decoration: none;
+            font-size: 0.95rem;
+        }
+
+        .btn:hover {
+            background: var(--emerald-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(27, 77, 62, 0.25);
+        }
+
+        .btn-gold {
+            background: var(--gold-accent);
+            color: var(--emerald-dark);
+        }
+
+        .btn-gold:hover {
+            background: #c5a028;
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--emerald-main);
+            color: var(--emerald-main);
+        }
+
+        .btn-outline:hover {
+            background: var(--emerald-main);
+            color: white;
+        }
+
+        /* Context Banner Gorontalo */
+        .gorontalo-banner {
+            background: linear-gradient(135deg, #1b4d3e 0%, #2d6a4f 100%);
+            color: white;
+            padding: 1.2rem 1.5rem;
+            border-radius: var(--radius-md);
+            margin-bottom: 1.5rem;
+            border-left: 6px solid var(--gold-accent);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .badge-local {
+            background: var(--gold-accent);
+            color: var(--emerald-dark);
+            font-weight: 800;
+            padding: 0.2rem 0.6rem;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+        }
+
+        /* Database Settings Panel */
+        .db-config-box {
+            background: #fdfbf7;
+            border: 1px solid var(--gold-accent);
+            border-radius: var(--radius-sm);
+            padding: 1rem 1.2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--emerald-dark);
+            color: var(--cream-accent);
+            text-align: center;
+            padding: 1.5rem;
+            margin-top: auto;
+            border-top: 3px solid var(--gold-accent);
+            font-size: 0.88rem;
+        }
+
+        /* Modal / Dialog */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.6);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+            padding: 1rem;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+        }
+
+        .modal-body {
+            background: white;
+            border-radius: var(--radius-md);
+            max-width: 600px;
+            width: 100%;
+            padding: 2rem;
+            box-shadow: var(--shadow-lg);
+            position: relative;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text-muted);
+        }
+
+        /* Utility classes */
+        .text-center { text-align: center; }
+        .mb-1 { margin-bottom: 0.5rem; }
+        .mb-2 { margin-bottom: 1rem; }
+        .mb-3 { margin-bottom: 1.5rem; }
+        .bold { font-weight: bold; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="header-container">
+            <div class="logo-area">
+                <div class="logo-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#1b4d3e" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
+                </div>
+                <div class="logo-text">
+                    <h1>MPI FIKIH MA KELAS XII</h1>
+                    <p>Kanwil Kemenag Provinsi Gorontalo • Konsep Hukum Syara'</p>
+                </div>
+            </div>
+
+            <nav>
+                <button class="nav-btn active" onclick="switchTab('beranda')">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path></svg> Beranda
+                </button>
+                <button class="nav-btn" onclick="switchTab('materi')">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg> Ringkasan Materi
+                </button>
+                <button class="nav-btn" onclick="switchTab('simulasi')">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polygon points="10 8 16 12 10 16 10 8"></polygon></svg> Lab Simulasi
+                </button>
+                <button class="nav-btn" onclick="switchTab('kinestetik')">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg> Aktivitas Kelompok
+                </button>
+                <button class="nav-btn" onclick="switchTab('kuis')">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"></path><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path></svg> Kuis Formatif
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section id="beranda" class="tab-content active">
+            <div class="cover-card">
+                <div class="cover-grid">
+                    <div>
+                        <span class="cover-badge">Modul Eksplorasi Modular • Terintegrasi Google Spreadsheet DB</span>
+                        <h1 class="cover-title">Analisis Konsep Hukum Syara'</h1>
+                        <p class="cover-subtitle">Memahami Hakikat Khitab Allah, Hukum Taklifi, Hukum Wadh'i, serta Komponen Utama Penentu Hukum Islam secara Interaktif dan Kontekstual.</p>
+                        
+                        <div class="author-box">
+                            <div class="author-name">Penyusun: Amna Hadji Ishak, S.Ag</div>
+                            <div class="author-inst">Guru Fikih Madrasah Aliyah • Kantor Wilayah Kementerian Agama Provinsi Gorontalo</div>
+                        </div>
+
+                        <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                            <button class="btn btn-gold" onclick="switchTab('materi')">
+                                Mulai Eksplorasi Materi
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                            </button>
+                            <button class="btn btn-outline" onclick="switchTab('kuis')">
+                                Masuk Kuis Evaluasi
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="cover-visual">
+                        <svg class="quran-illustration" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="50" cy="50" r="46" fill="#1b4d3e" stroke="#d4af37" stroke-width="3"/>
+                            <path d="M25 70 L50 50 L75 70 M25 70 L50 85 L75 70" stroke="#d4af37" stroke-width="3" stroke-linecap="round"/>
+                            <path d="M25 45 C35 40 48 44 50 48 C52 44 65 40 75 45 L75 62 C65 57 52 61 50 64 C48 61 35 57 25 62 Z" fill="#faf6f0" stroke="#d4af37" stroke-width="1.5"/>
+                            <path d="M50 48 L50 64" stroke="#1b4d3e" stroke-width="1.5"/>
+                            <line x1="30" y1="50" x2="44" y2="48" stroke="#1b4d3e" stroke-width="1"/>
+                            <line x1="30" y1="54" x2="44" y2="52" stroke="#1b4d3e" stroke-width="1"/>
+                            <line x1="56" y1="48" x2="70" y2="50" stroke="#1b4d3e" stroke-width="1"/>
+                            <line x1="56" y1="52" x2="70" y2="54" stroke="#1b4d3e" stroke-width="1"/>
+                            <path d="M50 20 L52 26 L58 26 L53 30 L55 36 L50 32 L45 36 L47 30 L42 26 L48 26 Z" fill="#d4af37"/>
+                        </svg>
+                        <h3 style="color: var(--gold-accent); font-size: 1.1rem; margin-bottom: 0.3rem;">الْحُكْمُ الشَّرْعِيُّ</h3>
+                        <p style="font-size: 0.82rem; opacity: 0.9;">Khitab Allah SWT yang Berhubungan dengan Perbuatan Mukallaf</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="gorontalo-banner">
+                <div>
+                    <span class="badge-local">Konteks Agropolitan Gorontalo</span>
+                    <h3 style="margin-top: 0.3rem; font-size: 1.1rem;">Integrasi Pembelajaran dengan Kehidupan Daerah</h3>
+                    <p style="font-size: 0.9rem; opacity: 0.95;">Materi dalam modul ini diperkaya dengan studi kasus nyata masyarakat Gorontalo, seperti tradisi <em>Huyula</em> (gotong royong tani), sistem bagi hasil panen jagung di Bone Bolango, hingga penetapan zakat pertanian irigasi pegunungan.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="materi" class="tab-content">
+            <div class="card">
+                <div class="card-header">
+                    <span class="card-icon">📖</span>
+                    <h2>1. Pengertian & Unsur-Unsur Hukum Syara'</h2>
+                </div>
+                <p class="mb-2"><strong>Hukum Syara'</strong> adalah firman Allah SWT (Khitab) yang berkaitan dengan perbuatan para mukallaf, baik berupa tuntutan (perintah/larangan), pilihan untuk berbuat, maupun berupa ketetapan (syarat/sebab/penghalang).</p>
+                
+                <div class="grid-3 mb-2">
+                    <div class="concept-card">
+                        <h3>1. Al-Hakim <span class="arabic-text">الْحَاكِمُ</span></h3>
+                        <p style="font-size: 0.88rem; color: var(--text-muted);">Sumber atau Pembuat Hukum Syar'i secara mutlak, yaitu <strong>Allah SWT</strong>.</p>
+                    </div>
+                    <div class="concept-card">
+                        <h3>2. Al-Mahkum Fihi <span class="arabic-text">الْمَحْكُومُ فِيهِ</span></h3>
+                        <p style="font-size: 0.88rem; color: var(--text-muted);"><strong>Perbuatan Mukallaf</strong> yang berhubungan dengan hukum syara'.</p>
+                    </div>
+                    <div class="concept-card">
+                        <h3>3. Al-Mahkum 'Alaihi <span class="arabic-text">الْمَحْكُومُ عَلَيْهِ</span></h3>
+                        <p style="font-size: 0.88rem; color: var(--text-muted);"><strong>Subjek Hukum (Mukallaf)</strong> yaitu manusia yang berakal sehat dan baligh.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="simulasi" class="tab-content">
+            <div class="card">
+                <div class="card-header">
+                    <span class="card-icon">🧪</span>
+                    <h2>Lab Analisis & Simulasi Hukum Syara'</h2>
+                </div>
+                <div class="simulator-box">
+                    <div class="grid-2">
+                        <div>
+                            <div class="control-group">
+                                <label for="sim-subjek">1. Subjek Pelaku (Al-Mahkum 'Alaihi):</label>
+                                <select id="sim-subjek" onchange="runSimulation()">
+                                    <option value="dewasa_berakal">Dewasa (Baligh) & Berakal Sehat</option>
+                                    <option value="anak_kecil">Anak-Anak (Belum Baligh)</option>
+                                    <option value="orang_gila">Orang Gila / Hilang Akal</option>
+                                    <option value="orang_tidur">Orang Tertidur / Lupa</option>
+                                </select>
+                            </div>
+
+                            <div class="control-group">
+                                <label for="sim-perintah">2. Bentuk Khitab Allah (Perintah / Larangan):</label>
+                                <select id="sim-perintah" onchange="runSimulation()">
+                                    <option value="perintah_tegas">Perintah Tegas (Jazim) - Misal: Shalat & Zakat</option>
+                                    <option value="perintah_biasa">Perintah Tidak Tegas - Misal: Shalat Dhuha / Huyula</option>
+                                    <option value="larangan_tegas">Larangan Tegas - Misal: Riba / Mencuri</option>
+                                    <option value="larangan_biasa">Larangan Tidak Tegas - Misal: Makan Bawang sebelum ke Masjid</option>
+                                    <option value="pilihan">Pilihan Bebas (Boleh Pilih Dikerjakan/Tidak)</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div>
+                            <div class="control-group">
+                                <label for="sim-sebab">3. Status Sebab & Syarat (Hukum Wadh'i):</label>
+                                <select id="sim-sebab" onchange="runSimulation()">
+                                    <option value="lengkap">Sebab & Syarat Terpenuhi Lengkap</option>
+                                    <option value="tanpa_syarat">Sebab Ada, Tapi Syarat Belum Terpenuhi</option>
+                                    <option value="tanpa_sebab">Sebab Belum Ada</option>
+                                </select>
+                            </div>
+
+                            <div class="control-group">
+                                <label for="sim-mani">4. Adanya Mani' (Penghalang Syar'i):</label>
+                                <select id="sim-mani" onchange="runSimulation()">
+                                    <option value="tidak_ada">Tidak Ada Penghalang (Suci, Sadar)</option>
+                                    <option value="ada_haid">Ada Penghalang (Misal: Haid / Nifas)</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="sim-result" id="sim-output"></div>
+                </div>
+            </div>
+        </section>
+
+        <section id="kinestetik" class="tab-content">
+            <div class="card">
+                <div class="card-header">
+                    <span class="card-icon">🎯</span>
+                    <h2>Aktivitas Matcher Kasus Fikih Gorontalo</h2>
+                </div>
+                <div class="matching-container">
+                    <div>
+                        <h3 style="color: var(--emerald-dark); margin-bottom: 0.8rem; font-size: 1rem;">Kartu Kasus:</h3>
+                        <div id="drag-items-container">
+                            <div class="draggable-item" draggable="true" id="item-1" data-target="wajib">🌾 Petani Paguyaman membayar Zakat Jagung 10% dari hasil panen 2 Ton.</div>
+                            <div class="draggable-item" draggable="true" id="item-2" data-target="mubah">🌽 Memilih menanam Jagung Varietas Hibrida daripada Jagung Manis.</div>
+                            <div class="draggable-item" draggable="true" id="item-3" data-target="syarat">💧 Berwudhu sebelum melaksanakan Shalat Dhuhur.</div>
+                            <div class="draggable-item" draggable="true" id="item-4" data-target="mani">🛑 Kondisi Haid yang menghalangi seorang Muslimah berpuasa.</div>
+                            <div class="draggable-item" draggable="true" id="item-5" data-target="haram">🚫 Menjual hasil panen cabai dengan sistem Ijon/Tebas tanpa kepastian.</div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <h3 style="color: var(--emerald-dark); margin-bottom: 0.8rem; font-size: 1rem;">Kategori Hukum:</h3>
+                        <div class="drop-zone" id="zone-wajib" data-category="wajib"><h4>1. WAJIB (IJAB)</h4></div>
+                        <div class="drop-zone" id="zone-mubah" data-category="mubah"><h4>2. MUBAH (IBAHAH)</h4></div>
+                        <div class="drop-zone" id="zone-syarat" data-category="syarat"><h4>3. SYARAT (الشَّرْط)</h4></div>
+                        <div class="drop-zone" id="zone-mani" data-category="mani"><h4>4. PENGHALANG (MANI')</h4></div>
+                        <div class="drop-zone" id="zone-haram" data-category="haram"><h4>5. HARAM (TAHRIM)</h4></div>
+                    </div>
+                </div>
+
+                <div style="margin-top: 1.5rem; text-align: center;">
+                    <button class="btn btn-gold" onclick="checkKinestheticAnswers()">Cek Hasil Analisis</button>
+                    <button class="btn btn-outline" onclick="resetKinestheticMatch()">Reset</button>
+                </div>
+                <div id="match-feedback" style="margin-top: 1rem; text-align: center; font-weight: bold;"></div>
+            </div>
+        </section>
+
+        <section id="kuis" class="tab-content">
+            <!-- Database Configuration Box for Teacher/Admin -->
+            <div class="db-config-box">
+                <h3 style="color: var(--emerald-dark); font-size: 1rem; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 8px;">
+                    ⚡ Pengaturan Integrasi Database Guru (Google Apps Script)
+                </h3>
+                <p style="font-size: 0.82rem; color: var(--text-muted); margin-bottom: 0.6rem;">
+                    Masukkan URL Web App Google Apps Script untuk menghubungkan kuis ini langsung ke Google Spreadsheet Guru secara real-time.
+                </p>
+                <div style="display: flex; gap: 8px;">
+                    <input type="url" id="gas-url-input" placeholder="https://script.google.com/macros/s/.../exec" style="font-size: 0.85rem;" />
+                    <button class="btn btn-gold" onclick="saveGasUrl()" style="white-space: nowrap; padding: 0.5rem 1rem; font-size: 0.85rem;">Simpan URL</button>
+                    <button class="btn btn-outline" onclick="fetchQuestionsFromDatabase()" style="white-space: nowrap; padding: 0.5rem 1rem; font-size: 0.85rem;">Sync Soal</button>
+                </div>
+                <div id="gas-status" style="font-size: 0.8rem; margin-top: 0.4rem; font-weight: bold;"></div>
+            </div>
+
+            <!-- Student Identity Registration Form -->
+            <div class="card" id="student-ident-card">
+                <div class="card-header">
+                    <span class="card-icon">👤</span>
+                    <h2>Identitas Peserta Didik</h2>
+                </div>
+                <p class="mb-2" style="font-size: 0.9rem; color: var(--text-muted);">
+                    Silakan isi Nama Lengkap dan Kelas/Rombel sebelum memulai Kuis Formatif.
+                </p>
+                <div class="grid-2">
+                    <div class="control-group">
+                        <label for="student-name">Nama Lengkap Siswa *</label>
+                        <input type="text" id="student-name" placeholder="Contoh: Amna Ishak" required />
+                    </div>
+                    <div class="control-group">
+                        <label for="student-class">Kelas / Rombel *</label>
+                        <select id="student-class">
+                            <option value="">-- Pilih Kelas --</option>
+                            <option value="XII MA 1">XII MA 1</option>
+                            <option value="XII MA 2">XII MA 2</option>
+                            <option value="XII Keagamaan">XII Keagamaan</option>
+                            <option value="XII IPA">XII IPA</option>
+                            <option value="XII IPS">XII IPS</option>
+                        </select>
+                    </div>
+                </div>
+                <button class="btn btn-gold" onclick="startQuizWithIdentity()" style="width: 100%;">
+                    Mulai Kerjakan Kuis Evaluasi →
+                </button>
+            </div>
+
+            <!-- Quiz Questions Area (Hidden until identity is set) -->
+            <div class="card" id="quiz-main-card" style="display: none;">
+                <div class="card-header" style="justify-content: space-between;">
+                    <div style="display: flex; align-items: center; gap: 10px;">
+                        <span class="card-icon">📝</span>
+                        <h2>Kuis Formatif Interaktif</h2>
+                    </div>
+                    <span id="student-badge-display" style="background: var(--gold-light); color: var(--emerald-dark); padding: 0.3rem 0.8rem; border-radius: 20px; font-weight: 700; font-size: 0.85rem;"></span>
+                </div>
+
+                <!-- Quiz Progress Bar -->
+                <div style="background: var(--cream-accent); height: 10px; border-radius: 5px; margin-bottom: 1.5rem; overflow: hidden;">
+                    <div id="quiz-progress-bar" style="background: var(--emerald-main); height: 100%; width: 20%; transition: var(--transition);"></div>
+                </div>
+
+                <div id="quiz-container"></div>
+
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 1.5rem;">
+                    <button class="btn btn-outline" id="btn-prev-quiz" onclick="navigateQuiz(-1)" disabled>← Sebelumnya</button>
+                    <span id="quiz-counter" style="font-weight: 700; color: var(--emerald-dark);">Soal 1 dari 5</span>
+                    <button class="btn" id="btn-next-quiz" onclick="navigateQuiz(1)">Berikutnya →</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <div class="modal-overlay" id="score-modal">
+        <div class="modal-body text-center">
+            <button class="modal-close" onclick="closeModal()">×</button>
+            <div style="font-size: 3rem; margin-bottom: 0.5rem;">🏆</div>
+            <h2 style="color: var(--emerald-dark); margin-bottom: 0.5rem;">Hasil Evaluasi Kuis Formatif</h2>
+            <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1rem;" id="modal-student-info">Siswa: - | Kelas: -</p>
+            
+            <div style="background: var(--cream-accent); padding: 1.5rem; border-radius: var(--radius-md); margin-bottom: 1rem;">
+                <div style="font-size: 2.5rem; font-weight: 800; color: var(--emerald-main);" id="final-score-text">0 / 100</div>
+                <p style="font-weight: 600; color: var(--emerald-dark); margin-top: 0.3rem;" id="final-badge-text">Predikat: Faqih Muda</p>
+            </div>
+
+            <!-- Sync Status Indicator -->
+            <div id="sync-status-box" style="padding: 0.6rem; border-radius: var(--radius-sm); font-size: 0.85rem; font-weight: bold; margin-bottom: 1rem; background: var(--cream-accent);">
+                ⏳ Mengirimkan hasil ke Database Google Spreadsheet...
+            </div>
+
+            <p id="final-analysis-text" style="font-size: 0.9rem; color: var(--text-dark); margin-bottom: 1.5rem; text-align: left; background: #fff; padding: 1rem; border-left: 4px solid var(--emerald-main); border-radius: 4px;"></p>
+
+            <button class="btn btn-gold" onclick="closeModal(); resetQuiz();" style="width: 100%;">
+                Ulangi Evaluasi Kuis
+            </button>
+        </div>
+    </div>
+
+    <footer>
+        <p><strong>Media Pembelajaran Interaktif Fikih Madrasah Aliyah</strong></p>
+        <p>Disusun oleh: Amna Hadji Ishak, S.Ag • Kantor Wilayah Kementerian Agama Provinsi Gorontalo</p>
+        <p style="font-size: 0.78rem; opacity: 0.7; margin-top: 0.5rem;">Integrasi Database Real-time Google Sheets (Google Apps Script) • Ready for GitHub Hosting</p>
+    </footer>
+
+    <script>
+        // TAB NAVIGATION
+        function switchTab(tabId) {
+            document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
+            document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.remove('active'));
+
+            document.getElementById(tabId).classList.add('active');
+            
+            const navButtons = document.querySelectorAll('.nav-btn');
+            const tabMap = { 'beranda': 0, 'materi': 1, 'simulasi': 2, 'kinestetik': 3, 'kuis': 4 };
+            if (tabMap[tabId] !== undefined) navButtons[tabMap[tabId]].classList.add('active');
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // GOOGLE APPS SCRIPT DATABASE INTEGRATION
+        let gasUrl = localStorage.getItem('mpi_fikih_gas_url') || 'https://script.google.com/macros/s/AKfycbxB54pvnXimO_W2VPIPftTub7mJwdF2YcTytYZVVnxg9TzYm0NQGH3fqec0tyTERMvG/exec';
+
+        document.addEventListener('DOMContentLoaded', () => {
+            if (gasUrl) {
+                document.getElementById('gas-url-input').value = gasUrl;
+                document.getElementById('gas-status').innerHTML = `<span style="color: var(--success);">🟢 Terhubung ke URL GAS: ${gasUrl.substring(0,35)}...</span>`;
+                fetchQuestionsFromDatabase();
+            } else {
+                document.getElementById('gas-status').innerHTML = `<span style="color: var(--text-muted);">⚪ Menggunakan data soal lokal (Belum terhubung ke Database GAS)</span>`;
+            }
+            runSimulation();
+            setupDragAndDrop();
+        });
+
+        function saveGasUrl() {
+            const input = document.getElementById('gas-url-input').value.trim();
+            if (input) {
+                gasUrl = input;
+                localStorage.setItem('mpi_fikih_gas_url', gasUrl);
+                document.getElementById('gas-status').innerHTML = `<span style="color: var(--success);">🟢 URL Tersimpan! Mencoba sinkronisasi soal...</span>`;
+                fetchQuestionsFromDatabase();
+            } else {
+                localStorage.removeItem('mpi_fikih_gas_url');
+                gasUrl = '';
+                document.getElementById('gas-status').innerHTML = `<span style="color: var(--text-muted);">⚪ URL Dihapus. Kembali ke mode soal lokal.</span>`;
+            }
+        }
+
+        async function fetchQuestionsFromDatabase() {
+            if (!gasUrl) return;
+            document.getElementById('gas-status').innerHTML = `⏳ Mengambil data soal dari Google Spreadsheet...`;
+            try {
+                const response = await fetch(`${gasUrl}?action=getSoal`);
+                const result = await response.json();
+                if (result.status === 'success' && result.questions && result.questions.length > 0) {
+                    quizData = result.questions;
+                    document.getElementById('gas-status').innerHTML = `<span style="color: var(--success);">✅ Berhasil memuat ${quizData.length} soal langsung dari Sheet 'soal'!</span>`;
+                    renderQuestion(0);
+                }
+            } catch (err) {
+                console.warn("Gagal terhubung ke GAS, menggunakan soal lokal bawaan.", err);
+                document.getElementById('gas-status').innerHTML = `<span style="color: var(--warning);">⚠️ Gagal sinkronisasi. Menggunakan cadangan soal lokal offline.</span>`;
+            }
+        }
+
+        // SIMULATOR ENGINE
+        function runSimulation() {
+            const subjek = document.getElementById('sim-subjek').value;
+            const perintah = document.getElementById('sim-perintah').value;
+            const sebab = document.getElementById('sim-sebab').value;
+            const mani = document.getElementById('sim-mani').value;
+            const outputBox = document.getElementById('sim-output');
+            
+            let statusHukum = "", keabsahan = "", penjelasan = "";
+
+            if (subjek === 'orang_gila' || subjek === 'anak_kecil' || subjek === 'orang_tidur') {
+                statusHukum = "Gugur Kewajiban Taklifi (Ghairu Mukallaf)";
+                keabsahan = "Tidak Dikenai Dosa / Bebas Taklif";
+                penjelasan = `<strong>Penalaran Fikih:</strong> Syarat utama Al-Mahkum 'Alaihi (Mukallaf) adalah berakal dan baligh. Golongan ${subjek.replace('_', ' ')} berada di luar beban taklif syar'i.`;
+            } else if (mani === 'ada_haid') {
+                statusHukum = "Terhalang (Mani' Syar'i)";
+                keabsahan = "Haram/Batal Dikerjakan";
+                penjelasan = "<strong>Penalaran Fikih:</strong> Haid/Nifas adalah Mānī' (penghalang) yang mencegah berlakunya hukum shalat/puasa.";
+            } else if (sebab === 'tanpa_sebab') {
+                statusHukum = "Belum Ada Tuntutan Hukum";
+                keabsahan = "Tidak Wajib";
+                penjelasan = "<strong>Penalaran Fikih:</strong> Tanpa adanya sebab (misal: belum masuk waktu / belum nisab), tuntutan belum mengikat.";
+            } else if (sebab === 'tanpa_syarat') {
+                statusHukum = "Tuntutan Ada, Namun Amalan Batal";
+                keabsahan = "Batal / Tidak Sah (Fasid)";
+                penjelasan = "<strong>Penalaran Fikih:</strong> Jika syarat (seperti wudhu) belum terpenuhi, amalan dianggap Batal.";
+            } else {
+                if (perintah === 'perintah_tegas') {
+                    statusHukum = "WAJIB (IJAB)";
+                    keabsahan = "Sah & Menerima Pahala";
+                    penjelasan = "Tuntutan tegas Allah SWT kepada Mukallaf tanpa adanya penghalang.";
+                } else if (perintah === 'perintah_biasa') {
+                    statusHukum = "SUNNAH (NADB)";
+                    keabsahan = "Sah & Bernilai Pahala";
+                    penjelasan = "Tuntutan tidak tegas yang menganjurkan kebaikan.";
+                } else if (perintah === 'larangan_tegas') {
+                    statusHukum = "HARAM (TAHRIM)";
+                    keabsahan = "Berdosa Jika Dilakukan";
+                    penjelasan = "Larangan tegas yang wajib dijauhi.";
+                } else if (perintah === 'larangan_biasa') {
+                    statusHukum = "MAKRUH (KARAHAH)";
+                    keabsahan = "Sebaiknya Ditinggalkan";
+                    penjelasan = "Dianjurkan ditinggalkan untuk kesempurnaan ibadah.";
+                } else {
+                    statusHukum = "MUBAH (IBAHAH)";
+                    keabsahan = "Bebas Dipilih (Netral)";
+                    penjelasan = "Pilihan netral bagi Mukallaf antara mengerjakan atau meninggalkan.";
+                }
+            }
+
+            outputBox.innerHTML = `
+                <h4>Kesimpulan Analisis Fikih:</h4>
+                <p><strong>Status Hukum Taklifi:</strong> <span style="color: var(--gold-accent); font-weight: bold;">${statusHukum}</span></p>
+                <p><strong>Status Keabsahan:</strong> ${keabsahan}</p>
+                <div style="margin-top: 0.8rem; font-size: 0.88rem; border-top: 1px solid rgba(255,255,255,0.2); padding-top: 0.8rem;">${penjelasan}</div>
+            `;
+        }
+
+        // KINESTHETIC MATCHING GAME
+        let draggedItem = null;
+
+        function setupDragAndDrop() {
+            const draggables = document.querySelectorAll('.draggable-item');
+            const dropZones = document.querySelectorAll('.drop-zone');
+
+            draggables.forEach(draggable => {
+                draggable.addEventListener('dragstart', () => { draggedItem = draggable; draggable.style.opacity = '0.5'; });
+                draggable.addEventListener('dragend', () => { draggable.style.opacity = '1'; draggedItem = null; });
+                draggable.addEventListener('click', () => {
+                    draggables.forEach(d => d.style.borderColor = 'var(--cream-dark)');
+                    draggable.style.borderColor = 'var(--gold-accent)';
+                    draggedItem = draggable;
+                });
+            });
+
+            dropZones.forEach(zone => {
+                zone.addEventListener('dragover', (e) => { e.preventDefault(); zone.classList.add('hovered'); });
+                zone.addEventListener('dragleave', () => zone.classList.remove('hovered'));
+                zone.addEventListener('drop', (e) => {
+                    e.preventDefault();
+                    zone.classList.remove('hovered');
+                    if (draggedItem) zone.appendChild(draggedItem);
+                });
+                zone.addEventListener('click', () => {
+                    if (draggedItem && draggedItem.parentElement !== zone) {
+                        zone.appendChild(draggedItem);
+                        draggedItem.style.borderColor = 'var(--cream-dark)';
+                        draggedItem = null;
+                    }
+                });
+            });
+        }
+
+        function checkKinestheticAnswers() {
+            const dropZones = document.querySelectorAll('.drop-zone');
+            let correctCount = 0, totalItems = 5;
+
+            dropZones.forEach(zone => {
+                const category = zone.getAttribute('data-category');
+                zone.querySelectorAll('.draggable-item').forEach(item => {
+                    if (item.getAttribute('data-target') === category) {
+                        correctCount++;
+                        item.style.backgroundColor = '#d1e7dd';
+                        item.style.borderColor = '#2a9d8f';
+                    } else {
+                        item.style.backgroundColor = '#f8d7da';
+                        item.style.borderColor = '#e76f51';
+                    }
+                });
+            });
+
+            const feedback = document.getElementById('match-feedback');
+            if (correctCount === totalItems) {
+                feedback.innerHTML = `<span style="color: var(--success);">🎉 Luar Biasa! Seluruh ${correctCount} Analisis Tepat Pas!</span>`;
+            } else {
+                feedback.innerHTML = `<span style="color: var(--danger);">${correctCount} dari ${totalItems} tepat. Periksa item berwarna merah!</span>`;
+            }
+        }
+
+        function resetKinestheticMatch() {
+            const container = document.getElementById('drag-items-container');
+            document.querySelectorAll('.draggable-item').forEach(item => {
+                item.style.backgroundColor = 'white';
+                item.style.borderColor = 'var(--cream-dark)';
+                container.appendChild(item);
+            });
+            document.getElementById('match-feedback').innerHTML = '';
+        }
+
+        // QUIZ DATA & LOGIC WITH STUDENT IDENTITY & SPREADSHEET SYNC
+        let studentData = { name: '', class: '' };
+
+        let quizData = [
+            {
+                question: "1. Seorang petani di Suwawa, Kab. Bone Bolango telah memanen jagung seberat 2 Ton. Pengairan sawahnya mengandalkan air hujan (tanpa biaya irigasi). Berapakah zakat pertanian yang Wajib dikeluarkan dan apa status Hukum Syara'nya?",
+                options: [
+                    "A. Wajib (Ijab) sebesar 10% karena syarat nisab terpenuhi dan tanpa biaya pengairan.",
+                    "B. Sunnah (Nadb) sebesar 5% karena bersifat sukarela.",
+                    "C. Mubah sebesar 2.5% sesuai kehendak petani.",
+                    "D. Makruh jika tidak dibagikan kepada tetangga sekitar."
+                ],
+                correct: 0,
+                explanation: "<strong>Pembahasan Edukatif:</strong> Membayar Zakat Pertanian hukumnya <strong>WAJIB (IJAB)</strong> ketika memenuhi Nisab (5 Wasaq / ±653 kg). Karena pengairan mengandalkan air hujan (tanpa biaya tinggi), kadarnya adalah 10%."
+            },
+            {
+                question: "2. Di lingkungan madrasah, para siswa diajak melaksanakan tradisi 'Huyula' (gotong royong) membersihkan lingkungan sawah warga. Dalam konsep Hukum Taklifi, kegiatan tolong-menolong sukarela ini termasuk kategori...",
+                options: [
+                    "A. Ijab (Wajib mutlak)",
+                    "B. Nadb (Sunnah yang dianjurkan)",
+                    "C. Tahrim (Dilarang)",
+                    "D. Ibahah (Netral tanpa nilai pahala)"
+                ],
+                correct: 1,
+                explanation: "<strong>Pembahasan Edukatif:</strong> Gotong royong dalam kebaikan (Ta'awun/Huyula) merupakan anjuran khitab tidak tegas, dikategorikan sebagai <strong>NADB (Sunnah)</strong>."
+            },
+            {
+                question: "3. Syarat utama agar seseorang dapat dikategorikan sebagai Al-Mahkum 'Alaihi (Mukallaf yang dibebani hukum syara') adalah...",
+                options: [
+                    "A. Memiliki harta melimpah dan jabatan tinggi.",
+                    "B. Berakal sehat, baligh, serta mampu memahami Khitab Allah.",
+                    "C. Memiliki keturunan tokoh agama setempat.",
+                    "D. Sudah bekerja di sektor pertanian atau pemerintahan."
+                ],
+                correct: 1,
+                explanation: "<strong>Pembahasan Edukatif:</strong> Subjek hukum (Al-Mahkum 'Alaihi) wajib memenuhi syarat kecakapan hukum: <strong>Baligh, Berakal sehat, dan Mampu memahami taklif</strong>."
+            },
+            {
+                question: "4. Ibu Rahma tidak dapat melaksanakan Shalat dan Puasa karena sedang mengalami Haid. Dalam peninjauan Hukum Wadh'i, kondisi Haid tersebut berkedudukan sebagai...",
+                options: [
+                    "A. Sebab (السَّبَب)",
+                    "B. Syarat (الشَّرْط)",
+                    "C. Penghalang / Mānī' (الْمَانِع)",
+                    "D. Rukun (الرُّكْن)"
+                ],
+                correct: 2,
+                explanation: "<strong>Pembahasan Edukatif:</strong> Haid adalah <strong>Mānī' (Penghalang)</strong> yang mencegah berlakunya hukum syara' atau membatalkan keabsahan ibadah shalat/puasa."
+            },
+            {
+                question: "5. Pembeli memborong seluruh tanaman jagung di kebun yang baru berumur 2 minggu dengan harga sangat murah sebelum terlihat hasilnya (Gharar). Status hukum transaksi tersebut adalah...",
+                options: [
+                    "A. Haram (Tahrim) dan Akadnya Batal / Tidak Sah",
+                    "B. Makruh tetapi Akadnya Sah",
+                    "C. Mubah karena kesepakatan kedua pihak",
+                    "D. Sunnah untuk membantu petani"
+                ],
+                correct: 0,
+                explanation: "<strong>Pembahasan Edukatif:</strong> Transaksi ijon/tebas yang mengandung ketidakpastian tinggi dilarang secara tegas. Hukumnya <strong>HARAM (Tahrim)</strong> dan status akadnya <strong>BATAL / TIDAK SAH</strong>."
+            }
+        ];
+
+        let currentQuizIndex = 0;
+        let userAnswers = [];
+
+        function startQuizWithIdentity() {
+            const nameInput = document.getElementById('student-name').value.trim();
+            const classInput = document.getElementById('student-class').value;
+
+            if (!nameInput || !classInput) {
+                alert("Harap isi Nama Lengkap dan Kelas terlebih dahulu!");
+                return;
+            }
+
+            studentData.name = nameInput;
+            studentData.class = classInput;
+
+            document.getElementById('student-ident-card').style.display = 'none';
+            document.getElementById('quiz-main-card').style.display = 'block';
+            document.getElementById('student-badge-display').innerText = `👤 ${studentData.name} (${studentData.class})`;
+
+            userAnswers = new Array(quizData.length).fill(null);
+            renderQuestion(0);
+        }
+
+        function renderQuestion(index) {
+            const container = document.getElementById('quiz-container');
+            const data = quizData[index];
+
+            let optionsHTML = '';
+            data.options.forEach((opt, optIdx) => {
+                let optionClass = 'quiz-option';
+                if (userAnswers[index] === optIdx) {
+                    optionClass += ' selected';
+                    if (optIdx === data.correct) optionClass += ' correct';
+                    else optionClass += ' wrong';
+                }
+
+                optionsHTML += `
+                    <div class="${optionClass}" onclick="selectAnswer(${index}, ${optIdx})">
+                        <span>${opt}</span>
+                    </div>
+                `;
+            });
+
+            let feedbackHTML = '';
+            if (userAnswers[index] !== null) {
+                const isCorrect = userAnswers[index] === data.correct;
+                feedbackHTML = `
+                    <div class="quiz-feedback show ${isCorrect ? 'feedback-correct' : 'feedback-wrong'}">
+                        <strong>${isCorrect ? '✅ Jawaban Anda Tepat!' : '❌ Jawaban Belum Tepat.'}</strong><br>
+                        ${data.explanation}
+                    </div>
+                `;
+            }
+
+            container.innerHTML = `
+                <h3 style="color: var(--emerald-dark); margin-bottom: 1rem; font-size: 1.1rem; line-height: 1.4;">${data.question}</h3>
+                <div>${optionsHTML}</div>
+                ${feedbackHTML}
+            `;
+
+            document.getElementById('quiz-counter').innerText = `Soal ${index + 1} dari ${quizData.length}`;
+            document.getElementById('quiz-progress-bar').style.width = `${((index + 1) / quizData.length) * 100}%`;
+            document.getElementById('btn-prev-quiz').disabled = index === 0;
+            
+            if (index === quizData.length - 1) {
+                document.getElementById('btn-next-quiz').innerText = 'Lihat Hasil & Kirim 🏆';
+            } else {
+                document.getElementById('btn-next-quiz').innerText = 'Berikutnya →';
+            }
+        }
+
+        function selectAnswer(qIndex, optIndex) {
+            userAnswers[qIndex] = optIndex;
+            renderQuestion(qIndex);
+        }
+
+        function navigateQuiz(direction) {
+            if (direction === 1 && currentQuizIndex === quizData.length - 1) {
+                calculateAndSubmitFinalScore();
+                return;
+            }
+            currentQuizIndex += direction;
+            if (currentQuizIndex < 0) currentQuizIndex = 0;
+            if (currentQuizIndex >= quizData.length) currentQuizIndex = quizData.length - 1;
+            renderQuestion(currentQuizIndex);
+        }
+
+        async function calculateAndSubmitFinalScore() {
+            let correctCount = 0;
+            let formattedAnswers = [];
+
+            userAnswers.forEach((ans, idx) => {
+                const isCorrect = ans === quizData[idx].correct;
+                if (isCorrect) correctCount++;
+                formattedAnswers.push({
+                    questionId: idx + 1,
+                    selected: ans,
+                    isCorrect: isCorrect
+                });
+            });
+
+            const wrongCount = quizData.length - correctCount;
+            const score = Math.round((correctCount / quizData.length) * 100);
+
+            // Display basic score in modal
+            document.getElementById('modal-student-info').innerText = `Siswa: ${studentData.name} | Kelas: ${studentData.class}`;
+            document.getElementById('final-score-text').innerText = `${score} / 100`;
+
+            let badge = "Faqih Muda", analysis = "";
+            if (score === 100) {
+                badge = "🥇 Mujtahid / Faqih Unggol Gorontalo";
+                analysis = "Sempurna! Anda telah menguasai seluruh konsep Hukum Taklifi & Hukum Wadh'i dengan sangat mendalam.";
+            } else if (score >= 80) {
+                badge = "🥈 Ahli Fikih Terampil";
+                analysis = "Sangat Baik! Pemahaman Anda mengenai konsep Hukum Syara' sudah kokoh.";
+            } else {
+                badge = "📚 Pembelajar Fikih Aktif";
+                analysis = "Terus tingkatkan pemahaman dengan membaca kembali Tab Ringkasan Materi & Lab Simulasi.";
+            }
+
+            document.getElementById('final-badge-text').innerText = `Predikat: ${badge}`;
+            document.getElementById('final-analysis-text').innerHTML = analysis;
+
+            document.getElementById('score-modal').classList.add('active');
+
+            // Send payload to Google Spreadsheet via Apps Script
+            const syncBox = document.getElementById('sync-status-box');
+            if (gasUrl) {
+                syncBox.style.background = 'var(--gold-light)';
+                syncBox.style.color = 'var(--emerald-dark)';
+                syncBox.innerHTML = `⏳ Mengirimkan data siswa ke Sheet 'hasil_siswa'...`;
+
+                const payload = {
+                    action: 'saveResult',
+                    studentName: studentData.name,
+                    studentClass: studentData.class,
+                    score: score,
+                    correctCount: correctCount,
+                    wrongCount: wrongCount,
+                    answers: formattedAnswers
+                };
+
+                try {
+                    const response = await fetch(gasUrl, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+                        body: JSON.stringify(payload)
+                    });
+                    const resData = await response.json();
+                    
+                    if (resData.status === 'success') {
+                        syncBox.style.background = '#d1e7dd';
+                        syncBox.style.color = '#0f5132';
+                        syncBox.innerHTML = `✅ Hasil pengerjaan BERHASIL disimpan ke Database Google Spreadsheet Guru!`;
+                    } else {
+                        throw new Error(resData.message);
+                    }
+                } catch (err) {
+                    console.error("Gagal menyimpan ke Database:", err);
+                    syncBox.style.background = '#f8d7da';
+                    syncBox.style.color = '#842029';
+                    syncBox.innerHTML = `⚠️ Gagal menyimpan otomatis ke Spreadsheet. (Kuis tetap selesai & skor tersimpan lokal)`;
+                }
+            } else {
+                syncBox.style.background = 'var(--cream-accent)';
+                syncBox.style.color = 'var(--text-muted)';
+                syncBox.innerHTML = `ℹ️ Hasil dievaluasi secara lokal. (Hubungkan URL Google Apps Script di atas untuk rekap guru otomatis)`;
+            }
+        }
+
+        function closeModal() {
+            document.getElementById('score-modal').classList.remove('active');
+        }
+
+        function resetQuiz() {
+            currentQuizIndex = 0;
+            userAnswers = new Array(quizData.length).fill(null);
+            document.getElementById('quiz-main-card').style.display = 'none';
+            document.getElementById('student-ident-card').style.display = 'block';
+            document.getElementById('student-name').value = '';
+        }
+    </script>
+</body>
+</html>
